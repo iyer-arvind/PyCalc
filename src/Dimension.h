@@ -1,19 +1,44 @@
 #ifndef DIMENSION_H_INCLUDED
 #define DIMENSION_H_INCLUDED
 #include "LanguageStructures.h"
+#include <iostream>
 
 #define NDIMS 6
 
+#include <libxml++/libxml++.h>
 
 struct DimensionDef
 {
-	double __powers[NDIMS];
-	std::string __name;
-	std::string __baseName;
-	double __factor;
+	std::string name,id,baseName;
+	double powers[NDIMS];
+	bool isBaseUnit;
+	double factor;
+	DimensionDef():
+		isBaseUnit(false),
+		factor(1)
+	{
+		memset(powers,NDIMS*sizeof(double),0);
+	}
 };
 
-extern std::map<std::string,DimensionDef> __dimensionCache;
+class DimensionCache:public xmlpp::SaxParser
+{
+	static std::map<std::string,DimensionDef> __cache;
+	void __loadDimensions();
+	enum STATE {ROOT=0,UNITS_DEFINITION,UNIT_OF_MEASURE,NAME,QUANTITY_TYPE,DIMENSIONAL_CLASS,BASE_UNIT};
+	int __state;
+	DimensionDef __tempDim;
+public:
+	DimensionCache():__state(ROOT)
+	{
+		__loadDimensions();
+	}
+
+	void on_start_element(const Glib::ustring& name,const AttributeList& properties);
+	void on_characters(const Glib::ustring& characters);
+	void on_end_element(const Glib::ustring& name);
+
+};
 
 void loadDimensions();
 

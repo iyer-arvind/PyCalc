@@ -1,11 +1,6 @@
 <?xml version="1.0"?>
 <?xml-stylesheet type="text/xsl" href="stylesheet/Units.xsl"?>
-
-<UnitOfMeasureDictionary version="2.2"
-    xmlns="http://www.posc.org/schemas" 
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.posc.org/schemas
-           units20/Units.xsd">
+<UnitOfMeasureDictionary xmlns="http://www.posc.org/schemas" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.2" xsi:schemaLocation="http://www.posc.org/schemas            units20/Units.xsd">
 
   <DocumentInformation>
     <DocumentName>
@@ -404,7 +399,7 @@
       <QuantityType>dimensionless</QuantityType>
       <QuantityType>volumic concentration</QuantityType>
       <QuantityType>mass concentration</QuantityType>
-      <QuantityType></QuantityType>
+      <QuantityType/>
       <QuantityType>linear strain</QuantityType>
       <QuantityType>shear strain</QuantityType>
       <QuantityType>attenuation</QuantityType>
@@ -11048,7 +11043,7 @@
       </ConversionToBaseUnit>
     </UnitOfMeasure>
     <UnitOfMeasure id="mCi" annotation="mCi">
-      <Name></Name>
+      <Name/>
       <QuantityType>activity (of radioactivity)</QuantityType>
       <DimensionalClass>1/T</DimensionalClass>
       <SameUnit uom="mCi" namingSystem="RP66"/>
@@ -13252,7 +13247,7 @@
       </ConversionToBaseUnit>
     </UnitOfMeasure>
     <UnitOfMeasure id="nCi" annotation="nCi">
-      <Name></Name>
+      <Name/>
       <QuantityType>activity (of radioactivity)</QuantityType>
       <DimensionalClass>1/T</DimensionalClass>
       <SameUnit uom="nCi" namingSystem="RP66"/>
@@ -13565,7 +13560,7 @@
       </ConversionToBaseUnit>
     </UnitOfMeasure>
     <UnitOfMeasure id="pCi" annotation="pCi">
-      <Name></Name>
+      <Name/>
       <QuantityType>activity (of radioactivity)</QuantityType>
       <DimensionalClass>1/T</DimensionalClass>
       <SameUnit uom="pCi" namingSystem="RP66"/>
@@ -15324,7 +15319,7 @@
       </ConversionToBaseUnit>
     </UnitOfMeasure>
     <UnitOfMeasure id="uCi" annotation="uCi">
-      <Name></Name>
+      <Name/>
       <QuantityType>activity (of radioactivity)</QuantityType>
       <DimensionalClass>1/T</DimensionalClass>
       <SameUnit uom="uCi" namingSystem="RP66"/>

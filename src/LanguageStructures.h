@@ -6,7 +6,6 @@
 #include <string>
 
 
-
 class LanguageStructure
 {
 public:
