@@ -5,6 +5,7 @@
 void yyerror (char *s) {fprintf (stderr, "ERROR: %s\n", s);}
 int yylex();
 
+#define AS(TYP,PTR) *(dynamic_cast<TYP*>(PTR))
 
 %}
 
@@ -17,50 +18,50 @@ int yylex();
 
 %%
 program:
-       	equation					{printf("program:1 %d\n",__LINE__);}
-	| program equation				{printf("program:2 %d\n",__LINE__);}
-	| program guess					{printf("program:2 %d\n",__LINE__);}
+       	equation					{LOG("program");}
+	| program equation				{LOG("program");}
+	| program guess					{LOG("program");}
 	;
 
 equation:
-	expression OPEQ expression			{printf("equation:1 %d\n",__LINE__);}
+	expression OPEQ expression			{LOG("equation");}
 	;
 
 guess:
-     	expression OPSIM expression			{printf("guess:1 %d\n",__LINE__);}
+     	expression OPSIM expression			{LOG("guess");}
 
 expression:			
-	exponent					{printf("expression:1 %d\n",__LINE__);}
-	| expression OPADD exponent			{printf("expression:2 %d\n",__LINE__);}
-	| expression OPSUB exponent			{printf("expression:3 %d\n",__LINE__);}
-	| '(' expression ')'				{printf("expression:4 %d\n",__LINE__);}
+	exponent					{LOG("expression");}
+	| expression OPADD exponent			{LOG("expression");}
+	| expression OPSUB exponent			{LOG("expression");}
+	| '(' expression ')'				{LOG("expression");}
 	;
 exponent:
-	product						{printf("exponent:1 %d\n",__LINE__);}
-	| exponent OPPOW product			{printf("exponent:2 %d\n",__LINE__);}
-	| '(' exponent ')'				{printf("exponent:3 %d\n",__LINE__);}
+	product						{LOG("exponent");}
+	| exponent OPPOW product			{LOG("exponent");}
+	| '(' exponent ')'				{LOG("exponent");}
 	;
 product:
-	element						{printf("product:1 %d\n",__LINE__);}
-	| product OPMUL element				{printf("product:2 %d\n",__LINE__);}
-	| product OPDIV element				{printf("product:3 %d\n",__LINE__);}
-	| '(' product ')'				{printf("product:4 %d\n",__LINE__);}
+	element						{LOG("product");}
+	| product OPMUL element				{LOG("product");}
+	| product OPDIV element				{LOG("product");}
+	| '(' product ')'				{LOG("product");}
 	;
 element:
-	IDENTIFIER					{printf("element:1 %d\n",__LINE__);$$=$1;}
-	| dimensionedNumber				{printf("element:2 %d\n",__LINE__);$$=$1;}
+	IDENTIFIER					{LOG("element");$$=$1;}
+	| dimensionedNumber				{LOG("element");$$=$1;}
 	;
 
 dimensionedNumber:
-	NUMBER						{printf("dimensionedNumber:1 %d\n",__LINE__);$$=$1;}
-	| dimensionedNumber dimension 			{printf("dimensionedNumber:2 %d\n",__LINE__);(*(dynamic_cast<Number*>($1)))*=(*(dynamic_cast<Dimension*>($2)));$$=$1;}
+	NUMBER						{LOG("dimensionedNumber");$$=$1;}
+	| dimensionedNumber dimension 			{LOG("dimensionedNumber");AS(Number,$1)*=AS(Dimension,$2);$$=$1;}
 	;
 
 dimension:						
-	DIMEL						{printf("dimension:2 %d\n",__LINE__);}
-	| dimension DIMEL				{printf("dimension:3 %d\n",__LINE__);}
-	| dimension DIMDIV DIMEL			{printf("dimension:4 %d\n",__LINE__);}
-	| dimension DIMPOW NUMBER			{printf("dimension:5 %d\n",__LINE__);}
+	DIMEL						{LOG("dimension");$$=$1;}
+	| dimension DIMEL				{LOG("dimension");AS(Dimension,$1)*=AS(Dimension,$2);$$=$1;}
+	| dimension DIMDIV DIMEL			{LOG("dimension");AS(Dimension,$1)/=AS(Dimension,$3);$$=$1;}
+	| dimension DIMPOW NUMBER			{LOG("dimension");AS(Dimension,$1)^=AS(Number,$3);$$=$1;}
 	;
 
 

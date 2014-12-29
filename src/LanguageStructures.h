@@ -4,7 +4,7 @@
 #include <memory>
 #include <map>
 #include <string>
-
+#include "Macros.h"
 
 class LanguageStructure
 {

@@ -236,7 +236,7 @@
     <UnitOfMeasure id="Bd" annotation="Bd">
       <Name>baud</Name>
       <QuantityType>data transmission speed</QuantityType>
-      <DimensionalClass>1/s</DimensionalClass>
+      <DimensionalClass>1/T</DimensionalClass>
       <SameUnit uom="1/s" namingSystem="RP66"/>
       <CatalogName>POSC</CatalogName>
       <CatalogSymbol isExplicit="true">Bd</CatalogSymbol>
@@ -249,7 +249,7 @@
     <UnitOfMeasure id="bps" annotation="bps">
       <Name>bits per second</Name>
       <QuantityType>data transmission speed</QuantityType>
-      <DimensionalClass>1/s</DimensionalClass>
+      <DimensionalClass>1/T</DimensionalClass>
       <SameUnit uom="Bd" namingSystem="POSC"/>
       <CatalogName>POSC</CatalogName>
       <CatalogSymbol isExplicit="true">bps</CatalogSymbol>
